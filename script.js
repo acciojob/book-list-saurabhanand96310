@@ -1,57 +1,31 @@
-//your JS code here. If requ
-
-
-
-const inputTitle=document.getElementById("title");
-const inputAuthor=document.getElementById("author");
-const inputIsbn=document.getElementById("isbn");
-const submitbtn=document.getElementById("submit");
-const records=document.getElementById("book-list")
-let bookArray=[];
-let obj=localStorage.getItem('user')
-if(obj!=null){
-    bookArray=JSON.parse(obj)
-}
-Display();
-    
-        submitbtn.addEventListener("click",(e)=>{
-    e.preventDefault();
-	let titleValue=inputTitle.value;
-	let authorValue=inputAuthor.value;
-	let isbnValue=inputIsbn.value;
-    if(titleValue!='' &&authorValue!=''&& isbnValue!=''){
-    bookArray.push({'title':titleValue,'author':authorValue,'isbn':isbnValue})
-	console.log(bookArray);
-    saveInfo(bookArray);
-    titleValue='';
-	authorValue='';
-	isbnValue='';
-} else {
-    alert("Please fill all fields.");
-  }
-})
-
-function saveInfo(bookArray){
-let str=JSON.stringify(bookArray);
-localStorage.setItem('user',str)
-Display();
-}
-
-function Display(){
-    let statement='';
-    bookArray.forEach((book,i) => {
-        statement+=`<tr>
-                        <td>${book.title}</td>
-                        <td>${book.author}</td>
-                        <td>${book.isbn}</td>
-                        <td class="delete" onclick='DeleteInfo(${i})'>X</td>
-                    </tr>`
+document.getElementById("submit").addEventListener("click", function(event) {
+      event.preventDefault();
+      addBookToList();
     });
-    records.innerHTML=statement;
-}
-
-function DeleteInfo(i){
-bookArray.splice(i,1);
-saveInfo(bookArray);
-Display()
+let tbody=document.getElementById("book-list");
+function addBookToList(){
+	let row=tbody.insertRow();
+	tbody.append(row);
+	let td1=row.insertCell(0);
+	td1.innerText=document.getElementById("title").value;
+	let td2=row.insertCell(1);
+	td2.innerText=document.getElementById("author").value;
+	let td3=row.insertCell(2);
+	td3.innerText=document.getElementById("isbn").value;
+	let td4=row.insertCell(3);
+	let newBtn = document.createElement('button');
+	newBtn.className="delete";
+    newBtn.innerText = 'X';
+	row.append(td1);
+	row.append(td2);
+	row.append(td3);
+	row.append(td4);
+		td4.append(newBtn);
+ 
+	var deleteButtons = document.getElementsByClassName("delete");
+      for (var i = 0; i < deleteButtons.length; i++) {
+        deleteButtons[i].addEventListener("click", function(event) {
+          event.target.parentNode.parentNode.remove();
+        });
+      }	
 }

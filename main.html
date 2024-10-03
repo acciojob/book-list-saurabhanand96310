@@ -8,36 +8,31 @@
 
 <body>
 	<!-- the entire body must be written by student -->
-	 <div class="main">
-        <header>
-            <h1 id="header">MyBookList</h1>
-        </header>
-        <div class="form-group">
-            <form class="form">
-                <label for="title" >Title</label>
-                <input id="title" >
-                <label for="author" >author</label>
-                <input id="author" >
-                <label for="isbn" >ISBN#</label>
-                <input id="isbn" >
-                <button id="submit">Add Book</button>
-            </form>
-        </div>
-        <div>
-            <table class="table table-striped">
-                <tr>
-                    <th>Title</th>
-                    <th>Author</th>
-                    <th>ISBN#</th>
-					<th class="delete">Delete</th>
-                </tr>
-               <tbody id="book-list">
-                    
-                </tbody>
-
-            </table>
-        </div>
-    </div>
+	 <h1 class="title">My<span>Book</span>List</h1>
+	<div class="form-group">
+		<form>
+			<div>Title</div>
+	<input type="text" value="" name="title" id="title">
+	<div>Author</div>
+	<input type="text" value="" name="author" id="author">
+	<div>ISBN#</div>
+	<input type="text" value="" name="isbn" id="isbn">
+	<button id="submit">Add Book</button>
+		</form>
+	</div>
+	<table class="table table-striped">
+			<thead>
+			<tr class="border">
+				<th>Title</th>
+				<th>Author</th>
+				<th>ISBN#</th>
+				<th></th>
+			</tr>
+			</thead>
+			<tbody id="book-list">
+ 
+			</tbody>
+	</table>
     <script type="text/javascript" src="./script.js">
 </script>
 
